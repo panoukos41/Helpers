@@ -22,17 +22,17 @@ Feedback and contributions are welcome!
 
 Following reactiveui and xamarin essentials structure the csproj compiles the code in the following folders:  
 
-| Folder                   | Code to put |
+| Folder                   | Code to put                                             |
 |--------------------------|---------------------------------------------------------|
 | Abstractions             | Non platform specific code that can be used everywhere. |
 | Android                  | Android specific code.                                  |
 | Ios<sup>1</sup>          | IOS specific code. (I have none :smirk:)                |
-| Mac<sup>1</sup>          | IOS specific code. (I have none :smirk:)                |
+| Mac<sup>1</sup>          | Mac specific code. (I have none :smirk:)                |
 | Netstandard              | .Net Standard specific code.                            |
-| Uwp                      | Universal Windows Platform specific code.               |
-| Net<sup>1</sup>          | IOS specific code. (I have none :smirk:)                |
-| Netcoreapp<sup>1</sup>   | IOS specific code. (I have none :smirk:)                |
-| Tizen<sup>1</sup>        | IOS specific code. (I have none :smirk:)                |
+| Uwp                      | Universal Windows Platform (Store apps) specific code.  |
+| Net<sup>1</sup>          | .Net Framework specific code. (I have none :smirk:)     |
+| Netcoreapp<sup>1</sup>   | .Net Core. (I have none :smirk:)                        |
+| Tizen<sup>1</sup>        | Tizen specific code. (I have none :smirk:)              |
 
 >1 => Folders don't exist, as a result the csproj "code" deosn't exist.
 >This is because i have no code for these platforms yet, 
