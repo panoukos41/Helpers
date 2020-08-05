@@ -17,8 +17,8 @@ namespace Panoukos41.Helpers.Services
     public partial class PermissionsService : IPermissionsService
     {
         private Activity _activity;
-        private TaskCompletionSource<bool> taskCompletion1;
-        private TaskCompletionSource<IDictionary<string, bool>> taskCompletion2;
+        private TaskCompletionSource<bool> TcsSinglePermission;
+        private TaskCompletionSource<IDictionary<string, bool>> TcsMultiPermissions;
         private IDictionary<string, bool> permissionsResluts;
 
         private Activity Activity
@@ -78,12 +78,12 @@ namespace Panoukos41.Helpers.Services
             {
                 return;
             }
-            else if (taskCompletion1 != null)
+            else if (TcsSinglePermission != null)
             {
-                taskCompletion1.SetResult(grantResults[0] == Permission.Granted);
-                taskCompletion1 = null;
+                TcsSinglePermission.SetResult(grantResults[0] == Permission.Granted);
+                TcsSinglePermission = null;
             }
-            else if (taskCompletion2 != null)
+            else if (TcsMultiPermissions != null)
             {
                 int count = permissions.Count();
                 for (int i = 0; i < count; i++)
@@ -91,8 +91,8 @@ namespace Panoukos41.Helpers.Services
                     string key = permissionsResluts.Keys.First(x => x.Equals(permissions[i]));
                     permissionsResluts[key] = grantResults[i] == Permission.Granted;
                 }
-                taskCompletion2.SetResult(permissionsResluts);
-                taskCompletion2 = null;
+                TcsMultiPermissions.SetResult(permissionsResluts);
+                TcsMultiPermissions = null;
                 permissionsResluts = null;
             }
         }
@@ -124,11 +124,11 @@ namespace Panoukos41.Helpers.Services
             if (CheckPermission(permission))
                 return Task.FromResult(true);
 
-            taskCompletion1 = new TaskCompletionSource<bool>();
+            TcsSinglePermission = new TaskCompletionSource<bool>();
 
             Activity.RequestPermissions(new string[] { permission }, RequestCode);
 
-            return taskCompletion1.Task;
+            return TcsSinglePermission.Task;
         }
 
         private Task<IDictionary<string, bool>> PlatformRequestPermission(params string[] permissions)
@@ -139,13 +139,13 @@ namespace Panoukos41.Helpers.Services
                 return Task.FromResult(dict);
             }
 
-            taskCompletion2 = new TaskCompletionSource<IDictionary<string, bool>>();
+            TcsMultiPermissions = new TaskCompletionSource<IDictionary<string, bool>>();
 
             permissionsResluts = permissions.ToDictionary(x => x, e => false);
 
             Activity.RequestPermissions(permissions, RequestCode);
 
-            return taskCompletion2.Task;
+            return TcsMultiPermissions.Task;
         }
     }
 }
