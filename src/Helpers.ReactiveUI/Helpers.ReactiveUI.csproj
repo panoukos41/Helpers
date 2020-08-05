@@ -1,0 +1,41 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;MonoAndroid90;</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks)uap10.0.16299;</TargetFrameworks>
+
+    <DefineConstants>$(DefineConstants);</DefineConstants>
+    <RootNamespace>Panoukos41.Helpers.ReactiveUI</RootNamespace>
+    <PackageId>Panoukos41.Helpers.ReactiveUI</PackageId>
+  </PropertyGroup>
+
+  <!-- Global nuget packages -->
+  <ItemGroup>
+    <PackageReference Include="reactiveui" Version="11.5.17" />
+  </ItemGroup>
+
+  <!-- Everything inside the project is compilzed against every framework except for these folders.-->
+  <!-- These folders compile only with a specified framework on the below item groups. -->
+  <!-- We also show the items using None Inlcude.-->
+  <ItemGroup>
+    <Compile Remove="Android\**\*.cs" />
+    <Compile Remove="Uwp\**\*.cs" />
+
+    <None Include="Android\**\*.cs" />
+    <None Include="Uwp\**\*.cs" />
+  </ItemGroup>
+
+  <!-- All files inside Android folder -->
+  <!-- Will be compiled using MonoAndroid. -->
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <Compile Include="Android\**\*.cs" />
+
+    <PackageReference Include="ReactiveUI.AndroidX" Version="11.5.17" />
+  </ItemGroup>
+
+  <!-- All files inside Uwp folder -->
+  <!-- Will be compiled using uap. -->
+  <!-- Be carefull for removes that should not exist below -->
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('uap')) ">
+    <Compile Include="Uwp\**\*.cs" />
+  </ItemGroup>
+</Project>

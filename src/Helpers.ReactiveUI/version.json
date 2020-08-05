@@ -1,0 +1,5 @@
+{
+  "inherit": true,
+  "pathFilters": [ "." ],
+  "version": "0.0.3"
+}
