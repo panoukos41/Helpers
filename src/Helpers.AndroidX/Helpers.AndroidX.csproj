@@ -1,0 +1,18 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras">
+  <PropertyGroup>
+    <TargetFramework>MonoAndroid90</TargetFramework>
+    
+    <RootNamespace>Panoukos41.Helpers.AndroidX</RootNamespace>
+    <PackageId>Panoukos41.Helpers.AndroidX</PackageId>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Xamarin.AndroidX.ViewPager2" Version="1.0.0.3" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.1.0-rc3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Helpers\Helpers.csproj" />
+  </ItemGroup>
+  <!-- Be carefull for removes that should not exist below -->
+</Project>
