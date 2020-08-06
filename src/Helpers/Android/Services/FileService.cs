@@ -7,7 +7,7 @@ namespace Panoukos41.Helpers.Services
 {
     /// <summary>
     /// A service that prompts a user to pick a file to read it or choose a place to store it. <br/>
-    /// You must set the Activity to use and put <see cref="OnActivityResult(int, int, Intent)"/> 
+    /// You must set the Activity to use and put <see cref="OnActivityResult(int, int, Intent)"/>
     /// on your activity for the service to work.
     /// </summary>
     public partial class FileService : IFileService
@@ -74,8 +74,9 @@ namespace Panoukos41.Helpers.Services
         /// </summary>
         public void OnActivityResult(int requestCode, int resultCode, Intent data)
         {
-            if ((requestCode, resultCode) == (RequestCode, (int)Result.Ok)
-                && operation != Operation.Unknown)
+            if (requestCode != RequestCode) return;
+
+            if (operation != Operation.Unknown && resultCode != (int)Result.Canceled)
             {
                 if (operation == Operation.Read)
                 {
@@ -89,6 +90,19 @@ namespace Panoukos41.Helpers.Services
                 }
                 operation = Operation.Unknown;
             }
+            else
+            {
+                if (operation == Operation.Read)
+                {
+                    tscReader.SetResult(null);
+                    tscReader = null;
+                }
+                else
+                {
+                    tscWriter.SetResult(null);
+                    tscWriter = null;
+                }
+            }
         }
 
         private Task<StreamReader> PlatformReadFileAsync(string fileType)
@@ -99,7 +113,7 @@ namespace Panoukos41.Helpers.Services
             var intent = new Intent(Intent.ActionOpenDocument)
                     .SetType(Intent.CategoryOpenable)
                     .SetType("*/*");
-                    //.SetType(fileType);
+            //.SetType(fileType);
 
             activity.StartActivityForResult(intent, RequestCode);
 

@@ -4,5 +4,6 @@
   },
   "publicReleaseRefSpec": [
     "^refs/heads/master$"
-  ]
+  ],
+  "version": "1.0"
 }

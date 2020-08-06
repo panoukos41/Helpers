@@ -11,7 +11,7 @@ Install the packages from nuget depending on what you need!
 | Panoukos41.Helpers            |                                      | Cross-Platform helpers.    | All<sup>1</sup>                |
 | Panoukos41.Helpers.AndroidX   |                                      | AndroidX helpers.          | MonoAndroid9.0                 |
 | Panoukos41.Helpers.Mvvm       |                                      | Simple MVVM helpers.       | All<sup>1</sup>                |
-| Panoukos41.Helpers.ReactiveUI |                                      | ReactiveUI helpers.        | All<sup>1</sup>                |
+| Panoukos41.Helpers.ReactiveUI |                                      | ReactiveUI helpers.        | MonoAndroid9.0                |
 | Panoukos41.Helpers.UI         |                                      | UI Components and Helpers. | MonoAndroid9.0 UAP<sup>2</sup> |
 
 > 1 => .NET Standard (1.4, 2.0), MonoAndroid (9.0), UAP (14393, 16299)  
@@ -19,6 +19,8 @@ Install the packages from nuget depending on what you need!
 
 # Contributing
 Feedback and contributions are welcome!  
+
+If you have a pull request please make it in dev.
 
 Following reactiveui and xamarin essentials structure the csproj compiles the code in the following folders:  
 

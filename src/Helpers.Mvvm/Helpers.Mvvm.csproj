@@ -1,7 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
     <TargetFrameworks>netstandard1.4;netstandard2.0;MonoAndroid90;</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks)uap10.0.16299;</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks)uap10.0.14393;uap10.0.16299;</TargetFrameworks>
 
     <DefineConstants>$(DefineConstants);</DefineConstants>
     <RootNamespace>Panoukos41.Helpers.Mvvm</RootNamespace>
@@ -12,6 +12,11 @@
   <ItemGroup Condition=" $(TargetFramework.StartsWith(netstandard1.)) ">
     <PackageReference Include="System.ComponentModel" Version="4.3.0" />
     <Compile Include="System\**\*.cs" />
+  </ItemGroup>
+
+  <!--Common nuget packages-->
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
 
   <!-- Everything inside the project is compilzed against every framework except for these folders.-->
@@ -46,8 +51,8 @@
 
   <!-- All files inside Uwp folder -->
   <!-- Will be compiled using uap. -->
+  <!-- Be carefull for removes that should not exist below -->
   <ItemGroup Condition=" $(TargetFramework.StartsWith('uap')) ">
     <Compile Include="Uwp\**\*.cs" />
   </ItemGroup>
-  <!-- Be carefull for removes that should not exist below -->
 </Project>

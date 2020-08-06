@@ -1,0 +1,6 @@
+﻿<Project>
+  <PropertyGroup>
+    <!--Version of C# to use-->
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>  
+</Project>
