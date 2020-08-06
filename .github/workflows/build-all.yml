@@ -21,6 +21,13 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1.0.1
 
+    - name: Restore
+      run: |
+        msbuild .\src\Helpers -t:restore
+        msbuild .\src\Helpers.AndroidX -t:restore
+        msbuild .\src\Helpers.Mvvm -t:restore
+        msbuild .\src\Helpers.ReactiveUI -t:restore
+
     - name: Build Helpers
       run: msbuild .\src\Helpers /p:Configuration=Release
 
