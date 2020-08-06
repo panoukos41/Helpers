@@ -12,10 +12,6 @@ jobs:
     # The type of runner that the job will run on
     runs-on: windows-latest
 
-    # Enviroment variables to use in steps
-    env:
-      Source_Path: .\src
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -26,13 +22,13 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.1
 
     - name: Build Helpers
-      run: msbuild Source_Path\Helpers /p:Configuration=Release
+      run: msbuild .\src\Helpers /p:Configuration=Release
 
     - name: Build Helpers.AndroidX
-      run: msbuild Source_Path\Helpers.AndroidX /p:Configuration=Release
+      run: msbuild .\src\Helpers.AndroidX /p:Configuration=Release
 
     - name: Build Helpers.Mvvm
-      run: msbuild Source_Path\Helpers.Mvvm /p:Configuration=Release
+      run: msbuild .\src\Helpers.Mvvm /p:Configuration=Release
 
     - name: Build Helpers.ReactiveUI
-      run: msbuild Source_Path\Helpers.ReactiveUI /p:Configuration=Release
+      run: msbuild .\src\Helpers.ReactiveUI /p:Configuration=Release
